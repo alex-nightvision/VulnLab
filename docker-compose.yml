@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  vulnlab:
+    image: yavuzlar/vulnlab:latest
+    container_name: vulnlab
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1337:80"
+    environment:
+      TZ: Asia/Dubai
+      LOG_STDOUT: true
+      LOG_STDERR: true
+      LOG_LEVEL: warn
+      ALLOW_OVERRIDE: All
+      DATE_TIMEZONE: UTC
+      TERM: dumb
+    volumes:
+      - ./app:/var/www/html
+    command: ["/usr/sbin/run.sh"]
